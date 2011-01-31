@@ -10,7 +10,11 @@ module Cnab240
     attr_accessor :linhas
     
     def initialize(args = {})
-      @linhas = processar(args) if validaCNAB240(args[:path])
+      if args.has_key? :path
+        @linhas = processar(args) if validaCNAB240(args[:path])
+      else
+        raise Exception, "Necessário informar o :path"
+      end
     end
 
     def validaCNAB240(path)
