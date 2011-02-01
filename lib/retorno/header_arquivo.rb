@@ -22,6 +22,8 @@ module Cnab240
       vlinha["hora_geracao_arq"]       = linha[151..156] #num - formato hhmmss
       vlinha["sequencia"]              = linha[157..162] #numerico //Número Sequencial do Arquivo
       vlinha["versao_layout_arq"]      = linha[163..165] #num 084 //Num da Versão do Layout do Arquivo
+      
+      #Complementos do banco
       vlinha["densidade"]              = linha[166..170] #numerico //Densidade de Gravação do Arquivo
       vlinha["reservado_banco"]        = linha[171..190] #alfanumerico //Para Uso Reservado do Banco
       vlinha["reservado_empresa"]      = linha[191..210] #alfanumerico //Para Uso Reservado da Empresa

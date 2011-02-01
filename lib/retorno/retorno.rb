@@ -30,7 +30,7 @@ module Cnab240
       tipoLn = linha[7..7].to_i
       segmento = linha[13..13].to_s
 
-      vlinha = case tipoLn
+      case tipoLn
         when $HEADER_ARQUIVO
            HeaderArquivo.processar(linha)
         when $HEADER_LOTE 
@@ -42,7 +42,6 @@ module Cnab240
         when $TRAILER_ARQUIVO 
            TrailerArquivo.processar(linha) 
         end
-      return vlinha
     end
 
     def processar(args)
@@ -61,11 +60,11 @@ module Cnab240
             if args[:merge] ==  true
               hash_aux = {}
           
-              #RESGATANDO SEGMENTO T PARA AGRUPAMENTO
+              #RESGATANDO SEGMENTO G PARA AGRUPAMENTO
               segmento = linha[13..13]
               add_to_hash(Detalhe.processar(linha, segmento), hash_aux)
           
-              #RESGATANDO SEGMENTO U PARA AGRUPAMENTO (PROXIMA LINHA)
+              #RESGATANDO SEGMENTO H PARA AGRUPAMENTO (PROXIMA LINHA)
               linha = f.gets
               segmento = linha[13..13]
               add_to_hash(Detalhe.processar(linha, segmento), hash_aux)
@@ -92,6 +91,5 @@ module Cnab240
         new_hash
       end
     end
-    
   end
 end
